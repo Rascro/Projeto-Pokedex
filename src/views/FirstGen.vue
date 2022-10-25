@@ -1,34 +1,51 @@
 <script>
-  import axios from "axios";
-  export default {
-    data() {
-      return {
-        name: "",
-        pokemon: {},
-      };
+import api from "../api/api";
+import Pokemon from "../components/CardsPoke.vue";
+export default {
+  name: "App",
+  components: {
+    Pokemon,
+  },
+  data() {
+    return {
+      pokemons: [],
+      filteredPokemons: [],
+      search: "",
+    };
+  },
+  created: function () {
+    api.get("pokemon?limit=151&offset=0").then((response) => {
+      this.pokemons = response.data.results;
+      this.filteredPokemons = response.data.results;
+    });
+  },
+  methods: {
+    searchPokemons: function () {
+      this.filteredPokemons = this.pokemons;
+      if (this.search == "" || this.search == " ") {
+        this.filteredPokemons = this.pokemons;
+      } else {
+        this.filteredPokemons = this.pokemons.filter(
+          (pokemon) => pokemon.name == this.search
+        );
+      }
     },
-    methods: {
-      async buscar() {
-        const url = `https://pokeapi.co/api/v2/pokemon/${this.pokemon}/json/`;
-        const { data } = await axios.get(url);
-        this.pokemon = data;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <template>
-    <div class="form">
-    <h1>Pokemon</h1>
-    <p>Nome do poke:</p>
-    <input type="text" v-model="name" placeholder="xxxxxxxx" />
-    <button @click="buscar">Search</button>
+  <div class="source">
+    <input type="text" placeholder="Buscar Pokemon" v-model="search" />
+    <button @click="searchPokemons">Buscar</button>
   </div>
-
-<form>
-  <label for="name">Name</label>
-  <input name="Pokemon" type="text" v-model="pokemon.id" />
-</form>
+  <div>
+    <div id="pokemon-list">
+      <div :key="pokemon.url" v-for="(pokemon, index) in filteredPokemons">
+        <Pokemon :index="index + 1" :name="pokemon.name" :url="pokemon.url" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -37,5 +54,18 @@
   margin: 0;
   border: 0;
   box-sizing: border-box;
+  display: inline-block;
+}
+.card {
+  border-radius: 5px;
+  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+  padding: 30px;
+  margin: 20px;
+  width: 400px;
+  transition: all 0.3s ease-out;
+}
+.source {
+  margin-left: 44%;
+  margin-top: 38px;
 }
 </style>
