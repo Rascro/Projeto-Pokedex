@@ -1,6 +1,8 @@
 <template>
-    <header>
-    site name
+    <header class="tittle">
+      <span>
+        PokeDex
+      </span>
     </header>
 </template>
 
@@ -13,5 +15,11 @@ header {
   border-radius: 20px;
   font-size: 20px;
   text-align: center;
+}
+.tittle span {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 50px;
 }
 </style>

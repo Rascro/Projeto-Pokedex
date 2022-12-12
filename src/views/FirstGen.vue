@@ -22,7 +22,7 @@ export default {
   methods: {
     searchPokemons: function () {
       this.filteredPokemons = this.pokemons;
-      if (this.search == "" || this.search == " ") {
+      if (this.search.trim() == "") {
         this.filteredPokemons = this.pokemons;
       } else {
         this.filteredPokemons = this.pokemons.filter(
@@ -39,11 +39,10 @@ export default {
     <input type="text" placeholder="Buscar Pokemon" v-model="search" />
     <button @click="searchPokemons">Buscar</button>
   </div>
-  <div>
-    <div id="pokemon-list">
-      <div :key="pokemon.url" v-for="(pokemon, index) in filteredPokemons">
-        <Pokemon :index="index + 1" :name="pokemon.name" :url="pokemon.url" />
-      </div>
+
+  <div class="pokeinfo" id="pokemon-list">
+    <div :key="pokemon.url" v-for="(pokemon, index) in filteredPokemons">
+      <Pokemon :index="index + 1" :name="pokemon.name" :url="pokemon.url" />
     </div>
   </div>
 </template>
@@ -62,10 +61,11 @@ export default {
   padding: 30px;
   margin: 20px;
   width: 400px;
-  transition: all 0.3s ease-out;
 }
 .source {
   margin-left: 44%;
-  margin-top: 38px;
+  margin-top: 10px;
+  width: 100%;
 }
+
 </style>

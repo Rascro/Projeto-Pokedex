@@ -9,7 +9,7 @@ export default {
   created: function () {
     api.get(this.url).then((response) => {
       this.pokemon.name = response.data.species.name;
-      this.pokemon.type = response.data.types[0].type.name;
+      this.pokemon.types = response.data.types;
       this.pokemon.front = response.data.sprites.front_default;
       this.currentImg = response.data.sprites.front_default;
     });
@@ -34,14 +34,14 @@ export default {
   <div id="card" class="card">
     <div>
       <figure>
-        <img :src="currentImg" alt="Placeholder image">
+        <img class="pokeimg" :src="currentImg" alt="Placeholder image">
       </figure>
     </div>
     <div class="card">
       <div>
         <div id="pokemon">
-          <p>{{ pokemon.name}}</p>
-          <p>{{ pokemon.type }}</p>
+          <p>{{ pokemon.name }}</p>
+          <p v-for="(type, i) of pokemon.types" :key="i">{{ type.type.name }}</p>
         </div>
       </div>
     </div>
@@ -61,9 +61,21 @@ body {
   border-radius: 5px;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   margin: 1vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 6em;
 }
 
 #card {
   width: 20rem;
+}
+
+#pokemon {
+  text-align: center;
+}
+.pokeimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
