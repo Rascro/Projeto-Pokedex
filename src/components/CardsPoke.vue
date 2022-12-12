@@ -64,11 +64,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 6em;
+  background-color: #DEDEDE;
 }
 
-#card {
-  width: 20rem;
-}
+
 
 #pokemon {
   text-align: center;

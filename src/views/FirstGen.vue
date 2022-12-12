@@ -58,14 +58,14 @@ export default {
 .card {
   border-radius: 5px;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
-  padding: 30px;
+  padding: 20px;
   margin: 20px;
-  width: 400px;
+  width: 500px;
+  background-color: #27A4F3;
 }
 .source {
   margin-left: 44%;
   margin-top: 10px;
   width: 100%;
 }
-
 </style>
