@@ -59,13 +59,32 @@ export default {
   border-radius: 5px;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   padding: 20px;
-  margin: 20px;
-  width: 500px;
-  background-color: #27A4F3;
+  margin: 50px;
+  width: 400px;
+  background-color: #27a4f3;
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+  padding: 20px;
+  height: 100%;
+  min-height: auto;
+  flex-wrap: wrap;
+  
 }
 .source {
-  margin-left: 44%;
+  display: flex;
   margin-top: 10px;
   width: 100%;
+  justify-content: center;
+}
+button,
+input {
+  padding: 3px 10px;
+  margin: 0px 5px;
+  background-color: #EDD22D;
+  border: solid 1px red;
+}
+button {
+  border-radius: 10px;
 }
 </style>

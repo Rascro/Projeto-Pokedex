@@ -40,7 +40,7 @@ export default {
     <div class="card">
       <div>
         <div id="pokemon">
-          <p>{{ pokemon.name }}</p>
+          <p class="name">{{ pokemon.name }}</p>
           <p v-for="(type, i) of pokemon.types" :key="i">{{ type.type.name }}</p>
         </div>
       </div>
@@ -76,5 +76,8 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.name {
+  background-color: aliceblue;
 }
 </style>
